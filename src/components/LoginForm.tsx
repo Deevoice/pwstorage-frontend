@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, Button, Link, Box, Typography } from '@mui/material';
-import { loginUser } from '@/lib/auth';
+import { loginUser } from '@/api/auth';
 import { useFingerprint } from '@/context/FingerprintContext';
+import Router from 'next/router';
+import { ErrorData } from '@/types/error';
 
 const LoginForm: React.FC = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -20,12 +22,20 @@ const LoginForm: React.FC = () => {
         e.preventDefault();
         try {
             const expires_in = 43800;
-            const user = await loginUser(formData.email, formData.password, fingerprint || '', expires_in);
-            console.log('User authenticated:', user);
-            // Redirect or perform additional actions on successful login
+            const user = await loginUser({
+                email: formData.email,
+                password: formData.password,
+                fingerprint: fingerprint || '',
+                expiresIn: expires_in
+            });
+            if ((user as ErrorData).error_code) {
+                console.log((user as ErrorData).error_code);
+            } else {
+                console.log('User authenticated:', user);
+                return Router.push('/lk');
+            }
         } catch (error) {
             console.error('Authentication failed:', error);
-            // Handle authentication error
         }
     };
 

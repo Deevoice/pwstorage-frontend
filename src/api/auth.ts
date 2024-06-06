@@ -1,21 +1,19 @@
-import api from '@/lib/api';
 import { LoginData, TokenData } from '@/types/auth';
+import { ErrorData } from '@/types/error';
+import { apiRequest, saveToken } from './apiHelper';
 
-export const login = async (data: LoginData): Promise<TokenData> => {
-    const response = await api.post<TokenData>('/auth/login', data);
-    const tokenData = response.data;
-    sessionStorage.setItem('accessToken', tokenData.accessToken);
-    return tokenData;
+const _prefix = '/auth';
+
+export const loginUser = async (
+    data: LoginData
+): Promise<TokenData | ErrorData> => {
+    const response = await apiRequest<TokenData | ErrorData>('post', _prefix, '/login', null, data);
+    return saveToken(response.data);
 };
 
-export const refreshToken = async (fingerprint: string): Promise<TokenData> => {
-    const response = await api.post<TokenData>('/auth/refresh_tokens', { fingerprint });
-    const tokenData = response.data;
-    sessionStorage.setItem('accessToken', tokenData.accessToken);
-    return tokenData;
-};
-
-export const logout = async (): Promise<null> => {
-    const response = await api.delete('/auth/logout');
+export const logoutUser = async (
+    fingerprint: string | null
+): Promise<null | ErrorData> => {
+    const response = await apiRequest<null>('delete', _prefix, '/logout', fingerprint);
     return response.data;
 };

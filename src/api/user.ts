@@ -1,22 +1,33 @@
-import api from '@/lib/api';
+import { apiRequest } from './apiHelper';
 import { UserData, UserCreateData, UserUpdateData } from '@/types/user';
+import { ErrorData } from '@/types/error';
 
-export const getUser = async (): Promise<UserData> => {
-    const response = await api.get<UserData>('/users/me');
+const _prefix = '/users';
+
+export const getUser = async (
+    fingerprint: string | null
+): Promise<UserData | ErrorData> => {
+    const response = await apiRequest<UserData>('get', _prefix, '/me', fingerprint);
     return response.data;
 };
 
-export const createUser = async (data: UserCreateData): Promise<UserData> => {
-    const response = await api.post<UserData>('/users', data);
+export const createUser = async (
+    data: UserCreateData
+): Promise<UserData | ErrorData> => {
+    const response = await apiRequest<UserData>('post', _prefix, '/', null, data);
     return response.data;
 };
 
-export const updateUser = async (data: UserUpdateData): Promise<UserData> => {
-    const response = await api.put<UserData>('/users/me', data);
+export const updateUser = async (
+    fingerprint: string | null, data: UserUpdateData
+): Promise<UserData | ErrorData> => {
+    const response = await apiRequest<UserData>('put', _prefix, '/me', fingerprint, data);
     return response.data;
 };
 
-export const deleteUser = async (): Promise<null> => {
-    const response = await api.delete('/users/me');
+export const deleteUser = async (
+    fingerprint: string | null
+): Promise<null | ErrorData> => {
+    const response = await apiRequest<null>('delete', _prefix, '/me', fingerprint);
     return response.data;
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
 import { TextField, Button, Box, Typography } from '@mui/material';
-import { registerUser } from '@/lib/auth';
-import { useFingerprint } from '@/context/FingerprintContext';
+import { createUser } from '@/api/user';
+import { ErrorData } from '@/types/error';
 
 const SignupForm: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -16,7 +17,6 @@ const SignupForm: React.FC = () => {
         password: '',
         confirmPassword: ''
     });
-    const { setFingerprint } = useFingerprint();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -32,14 +32,16 @@ const SignupForm: React.FC = () => {
             setErrors({ ...errors, confirmPassword: 'Passwords do not match' });
             return;
         }
-        try {
-            const user = await registerUser(formData.name, formData.email, formData.password);
+        const user = await createUser({ name: formData.name, email: formData.email, password: formData.password });
+        const errorData = (user as ErrorData);
+        if (errorData.error_code) {
+            if (errorData.error_code === 'UserEmailAlreadyExistsException') {
+                setErrors({ ...errors, email: errorData.detail, confirmPassword: '' });
+            }
+        } else {
+            setErrors({ name: '', email: '', password: '', confirmPassword: '' })
             console.log('User registered:', user);
-            setFingerprint('some-fingerprint'); // Установите fingerprint
-            // Redirect or perform additional actions on successful registration
-        } catch (error) {
-            console.error('Registration failed:', error);
-            // Handle registration error
+            Router.push('/login');
         }
     };
 

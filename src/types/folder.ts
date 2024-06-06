@@ -1,8 +1,8 @@
-import { PaginationResponse } from "./pagination";
+import { PaginationResponse } from './pagination';
 
 export interface FolderBaseData {
     name: string;
-    parentFolderId?: number;
+    parentFolderId: number | null;
 }
 
 export interface FolderData extends FolderBaseData {

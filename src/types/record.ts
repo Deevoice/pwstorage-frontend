@@ -2,7 +2,7 @@ import { RecordType } from './enums/record';
 import { PaginationResponse } from './pagination';
 
 export interface RecordBaseData {
-    folderId?: number;
+    folderId: number | null;
     title: string;
     isFavorite: boolean;
     content: string;
