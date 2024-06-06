@@ -1,21 +1,23 @@
 {
     "compilerOptions": {
         "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
+            "DOM",
+            "DOM.Iterable",
+            "ES6",
+            "ScriptHost"
         ],
-        "allowJs": true,
+        "allowJs": false,
         "skipLibCheck": true,
         "strict": true,
         "noEmit": true,
         "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "bundler",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
+        "outDir": "./dist",
         "plugins": [
             {
                 "name": "next"
@@ -25,7 +27,24 @@
             "@/*": [
                 "./src/*"
             ]
-        }
+        },
+        "target": "ES6", // The target version of ECMAScript
+        "sourceMap": false, // Disables the generation of source maps
+        "declaration": true, // Generates declaration files (.d.ts)
+        "removeComments": true, // Removes comments from output files
+        "noImplicitAny": true, // Prohibits the implicit type any
+        "noUnusedLocals": true, // Error if there are unused local variables
+        "noUnusedParameters": true, // Error if there are unused parameters
+        "noImplicitReturns": true, // Error if there are implicit return values
+        "noFallthroughCasesInSwitch": true, // Error if there is a fallthrough in the switch
+        "forceConsistentCasingInFileNames": true, // Ensures case consistency in file names
+        "noPropertyAccessFromIndexSignature": true, // Disallow accessing properties using an index signature.
+        "noUncheckedIndexedAccess": true, // Ensure that all indexed access types are checked.
+        "allowUnreachableCode": false, // Disallow unreachable code after return, throw, break, and continue statements.
+        "allowUnusedLabels": false, // Disallow unused labels.
+        "suppressExcessPropertyErrors": false, // Do not suppress errors for excess properties in object literals.
+        "suppressImplicitAnyIndexErrors": false, // Do not suppress errors for implicit 'any' types in index signatures.
+        "noStrictGenericChecks": false // Disable strict checking of generic types.
     },
     "include": [
         "next-env.d.ts",
