@@ -1,6 +1,6 @@
-import { apiRequest } from './apiHelper';
 import { RecordData, RecordCreateData, RecordUpdateData, RecordPaginationResponse } from '@/types/record';
 import { ErrorData } from '@/types/error';
+import { apiRequest } from './apiHelper';
 
 const _prefix = '/records';
 

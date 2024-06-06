@@ -2,8 +2,8 @@ import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
 import { ErrorData } from '@/types/error';
-import api from '@/lib/api';
 import { TokenData } from '@/types/auth';
+import api from '@/lib/api';
 
 export const apiRequest = async <T>(
     method: 'get' | 'post' | 'put' | 'patch' | 'delete',

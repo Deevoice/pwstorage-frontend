@@ -1,6 +1,6 @@
-import { apiRequest } from './apiHelper';
 import { UserData, UserCreateData, UserUpdateData } from '@/types/user';
 import { ErrorData } from '@/types/error';
+import { apiRequest } from './apiHelper';
 
 const _prefix = '/users';
 

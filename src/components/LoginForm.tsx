@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { TextField, Button, Link, Box, Typography } from '@mui/material';
-import { loginUser } from '@/api/auth';
-import { useFingerprint } from '@/context/FingerprintContext';
 import Router from 'next/router';
+import { TextField, Button, Link, Box, Typography } from '@mui/material';
+import { useFingerprint } from '@/context/FingerprintContext';
+import { loginUser } from '@/api/auth';
 import { ErrorData } from '@/types/error';
 
 const LoginForm: React.FC = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
+    const [errors, _] = useState({ email: '', password: '' });
     const { fingerprint } = useFingerprint();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent): Promise<any> => {
         e.preventDefault();
         try {
             const expires_in = 43800;
@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
                 console.log((user as ErrorData).error_code);
             } else {
                 console.log('User authenticated:', user);
-                return Router.push('/lk');
+                Router.push('/lk');
             }
         } catch (error) {
             console.error('Authentication failed:', error);
@@ -67,7 +67,7 @@ const LoginForm: React.FC = () => {
             <Button type="submit" variant="contained" color="primary" fullWidth>
                 Login
             </Button>
-            <Link href="/signup">Don't have an account? Sign Up</Link>
+            <Link href="/signup">{`Don't have an account? Sign Up`}</Link>
         </Box>
     );
 };

@@ -1,6 +1,6 @@
-import { apiRequest } from './apiHelper';
 import { FolderData, FolderCreateData, FolderUpdateData, FolderPaginationResponse } from '@/types/folder';
 import { ErrorData } from '@/types/error';
+import { apiRequest } from './apiHelper';
 
 const _prefix = '/folders';
 
