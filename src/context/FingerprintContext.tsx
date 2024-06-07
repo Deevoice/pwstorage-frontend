@@ -2,14 +2,14 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 interface FingerprintContextProps {
-    fingerprint: string | null;
+    fingerprint: string;
     setFingerprint: (fingerprint: string) => void;
 }
 
 const FingerprintContext = createContext<FingerprintContextProps | undefined>(undefined);
 
 export const FingerprintProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [fingerprint, setFingerprint] = useState<string | null>(null);
+    const [fingerprint, setFingerprint] = useState<string>('');
 
     useEffect(() => {
         const loadFingerprint = async () => {

@@ -20,17 +20,14 @@ const SignupForm: React.FC = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
         if (formData.password !== formData.confirmPassword) {
-            setErrors({ ...errors, confirmPassword: 'Passwords do not match' });
-            return;
+            return setErrors({ ...errors, confirmPassword: 'Passwords do not match' });
         }
         const user = await createUser({ name: formData.name, email: formData.email, password: formData.password });
         const errorData = (user as ErrorData);

@@ -1,15 +1,17 @@
 import axios, { AxiosError } from 'axios';
 import Router from 'next/router';
+import { STORAGE_ACCESS_TOKEN } from '@/utils/constants';
+import { API_BASE_URL } from '@/utils/constants';
 import { ErrorData } from '@/types/error';
 
 const api = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    baseURL: API_BASE_URL,
     withCredentials: true
 });
 
 api.interceptors.request.use(
     (config) => {
-        const token = sessionStorage.getItem('accessToken');
+        const token = sessionStorage.getItem(STORAGE_ACCESS_TOKEN);
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }

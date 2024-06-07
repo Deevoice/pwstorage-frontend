@@ -1,6 +1,7 @@
+import { BaseType } from "./abc";
 import { PaginationResponse } from './pagination';
 
-export interface FolderBaseData {
+export interface FolderBaseData extends BaseType {
     name: string;
     parentFolderId: number | null;
 }

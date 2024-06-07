@@ -1,4 +1,6 @@
-export interface UserBaseData {
+import { BaseType } from "./abc";
+
+export interface UserBaseData extends BaseType {
     name: string;
     email: string;
 }

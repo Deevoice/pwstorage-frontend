@@ -18,24 +18,21 @@ const LoginForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent): Promise<any> => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            const expires_in = 43800;
-            const user = await loginUser({
-                email: formData.email,
-                password: formData.password,
-                fingerprint: fingerprint || '',
-                expiresIn: expires_in
-            });
-            if ((user as ErrorData).error_code) {
-                console.log((user as ErrorData).error_code);
-            } else {
-                console.log('User authenticated:', user);
-                Router.push('/lk');
-            }
-        } catch (error) {
-            console.error('Authentication failed:', error);
+
+        const expiresIn = 43800;
+        const user = await loginUser({
+            email: formData.email,
+            password: formData.password,
+            fingerprint: fingerprint,
+            expiresIn: expiresIn
+        });
+        if ((user as ErrorData).error_code) {
+            console.log((user as ErrorData).error_code);
+        } else {
+            console.log('User authenticated:', user);
+            Router.push('/lk');
         }
     };
 
