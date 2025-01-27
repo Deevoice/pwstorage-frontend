@@ -7,7 +7,7 @@ Main page
 ![image](https://github.com/user-attachments/assets/fb41696b-3b72-437e-958a-4236a9fbf883)
 
 
-Sign up/Sign in
+Sign up/Log in
 
 ![image](https://github.com/user-attachments/assets/17844986-290f-43c1-8f4a-a5c0a5d2c64a)
 ![image](https://github.com/user-attachments/assets/31b68ae8-1a45-417c-915e-88d4c3ee2966)
