@@ -4,7 +4,7 @@ Frontend
 
 Main page
 
-![image](https://github.com/user-attachments/assets/fb41696b-3b72-437e-958a-4236a9fbf883)
+![image](https://github.com/user-attachments/assets/c3f4245e-a3d0-4cdf-8552-163fb2b4cdbb)
 
 
 Sign up/Log in
