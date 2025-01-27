@@ -1,71 +1,89 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
-import { TextField, Button, Link, Box, Typography } from '@mui/material';
-import { useFingerprint } from '@/context/FingerprintContext';
+import Link from 'next/link';
+import { TextField, Button, IconButton, Input, InputLabel, InputAdornment, FormControl } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { loginUser } from '@/api/auth';
 import { ErrorData } from '@/types/error';
+import useForm from '@/hooks/useForm';
+import { getFingerprint } from '@/api/apiHelper';
 
 const LoginForm: React.FC = () => {
-    const [formData, setFormData] = useState({ email: '', password: '' });
-    const [errors, _] = useState({ email: '', password: '' });
-    const { fingerprint } = useFingerprint();
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, checked, type } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value,
-        });
-    };
+    const initialData = { email: '', password: '' };
+    const { formData, handleChange } = useForm(initialData);
+    const [errors, setErrors] = useState(initialData);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const expiresIn = 43800;
+        const fingerprint = await getFingerprint();
         const user = await loginUser({
             email: formData.email,
             password: formData.password,
-            fingerprint: fingerprint,
-            expiresIn: expiresIn
+            fingerprint: fingerprint
         });
+
         if ((user as ErrorData).error_code) {
             console.log((user as ErrorData).error_code);
         } else {
-            console.log('User authenticated:', user);
             Router.push('/lk');
         }
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
-            <Typography variant="h4">Login</Typography>
-            <TextField
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={!!errors.email}
-                helperText={errors.email}
-                fullWidth
-                margin="normal"
-            />
-            <TextField
-                label="Password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                error={!!errors.password}
-                helperText={errors.password}
-                fullWidth
-                margin="normal"
-            />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-                Login
-            </Button>
-            <Link href="/signup">{`Don't have an account? Sign Up`}</Link>
-        </Box>
+        <div className="auth-container">
+            <form className="auth-block" onSubmit={handleSubmit}>
+                <h2 className="auth-block__title">LOGIN</h2>
+                <div className="auth-main">
+                    <div className="auth-forms">
+                        <TextField
+                            className="auth-main__input"
+                            name="email"
+                            type="email"
+                            variant="standard"
+                            value={formData.email}
+                            onChange={handleChange}
+                            error={!!errors.email}
+                            helperText={errors.email}
+                            label="Email"
+                        />
+                    </div>
+
+                    <FormControl className="auth-forms" sx={{ m: 1, width: '25ch' }} variant="standard">
+                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                        <Input
+                            className="auth-main__input"
+                            id="standard-adornment-password"
+                            name="password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={formData.password}
+                            onChange={handleChange}
+                            error={!!errors.password}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        sx={{ color: '#fff' }}
+                                        aria-label="toggle password visibility"
+                                        onClick={() => setShowPassword((show) => !show)}
+                                        onMouseDown={(e) => { e.preventDefault() }}
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+
+                    <Button className="auth-btn" type="submit">
+                        Login
+                    </Button>
+                    <Link className="another-auth" href="/signup">
+                        Don't have an account? Sign Up
+                    </Link>
+                </div>
+            </form>
+        </div>
     );
 };
 

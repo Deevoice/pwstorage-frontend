@@ -11,7 +11,7 @@ export const loginUser = async (
     deleteCookies();
     const passwordHash = blake2bHex(data.password);
     data.password = passwordHash.substring(0, 64);
-    const response = await apiRequest<TokenData | ErrorData>('post', _prefix, '/login', data.fingerprint, data);
+    const response = await apiRequest<TokenData | ErrorData>('post', _prefix, '/login', data);
     return saveCookies(data.fingerprint, response.data, passwordHash.substring(64, 128));
 };
 

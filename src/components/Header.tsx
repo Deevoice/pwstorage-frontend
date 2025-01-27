@@ -1,9 +1,18 @@
 import React from 'react';
 
-const Header: React.FC = () => {
+import { useRouter } from 'next/router';
+import LockPersonIcon from '@mui/icons-material/LockPerson';
+import Settings from './settings';
+
+
+const Header = () => {
+    const router = useRouter();
+    const isUserPage = ['/lk', '/settings'].includes(router.pathname);
+
     return (
-        <header>
-            <h1>My App</h1>
+        <header className='header'>
+            <h1 className='header__title'><LockPersonIcon /> Password Storage</h1>
+            {isUserPage && <Settings />}
         </header>
     );
 };

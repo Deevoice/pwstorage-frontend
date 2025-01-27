@@ -1,7 +1,72 @@
-/* Add your global styles here */
+:root {
+    --foreground: #fff;
+    --background-start: #151623;
+    --background-end: #151623;
+    --background-block: rgba(49, 49, 83, 90%);
+    --item-color: rgb(75, 75, 131);
+    --border: rgb(255 255 255 / 8%);
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f0f0;
+    color: var(--foreground);
+    background-color: var(--background-end);
+
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+
+    transition: all 0.5s ease-out;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--background-start);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgb(49, 49, 83, 90%);
+    border-radius: 4px;
+    border: 1px solid rgb(255 255 255 / 8%);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(60, 61, 122);
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.errors-p {
+    margin-top: 6px;
+}
+
+.header {
+    display: flex;
+    min-height: 70px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-block);
+    border-bottom: 1px solid var(--border);
+
+    padding: 0 16px;
+}
+
+.header__title {
+    font-size: 21px;
+}
+
+main {
+    width: auto;
+}
+
+footer {
+    min-height: 120px;
+    background-color: var(--background-block);
 }

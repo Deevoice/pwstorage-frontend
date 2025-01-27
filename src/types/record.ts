@@ -1,5 +1,6 @@
 import { BaseType } from "./abc";
 import { RecordType } from './enums/record';
+import { OrderByType } from "./enums/filter";
 import { PaginationResponse } from './pagination';
 
 export interface RecordBaseData extends BaseType {
@@ -12,8 +13,8 @@ export interface RecordBaseData extends BaseType {
 export interface RecordData extends RecordBaseData {
     id: number;
     recordType: RecordType;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface RecordCreateData extends RecordBaseData {
@@ -23,3 +24,23 @@ export interface RecordCreateData extends RecordBaseData {
 export interface RecordUpdateData extends RecordBaseData { }
 
 export interface RecordPaginationResponse extends PaginationResponse<RecordData> { }
+
+export interface RecordFilterRequest extends BaseType {
+    folderIdEq?: number;
+    recordTypeEq?: RecordType;
+
+    titleOrderBy?: OrderByType;
+    createdAtOrderBy?: OrderByType;
+    updatedAtOrderBy?: OrderByType;
+
+    titleEq?: string;
+    titleIlike?: string;
+
+    createdAtFrom?: string;
+    createdAtTo?: string;
+
+    updatedAtFrom?: string;
+    updatedAtTo?: string;
+
+    isFavorite?: boolean;
+}

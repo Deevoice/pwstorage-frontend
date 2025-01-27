@@ -4,7 +4,6 @@ export interface LoginData extends BaseType {
     email: string;
     password: string;
     fingerprint: string;
-    expiresIn: number;
 }
 
 export interface TokenData extends BaseType {

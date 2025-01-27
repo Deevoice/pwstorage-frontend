@@ -1,7 +1,12 @@
 import { BaseType } from "./abc";
 
+export interface PaginationRequest extends BaseType {
+    limit: number;
+    page: number;
+}
+
 export interface PaginationResponse<T> extends BaseType {
     items: T[];
-    total_items: number;
-    total_pages: number;
+    totalItems: number;
+    totalPages: number;
 }

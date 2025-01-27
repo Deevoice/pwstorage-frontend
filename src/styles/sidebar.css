@@ -1,0 +1,193 @@
+.vault-folders ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.vault-folders ul::-webkit-scrollbar-track {
+    background: rgba(73, 73, 117);
+}
+
+.vault-folders ul::-webkit-scrollbar-thumb {
+    background: rgb(82, 82, 153);
+    border-radius: 4px;
+    border: 1px solid rgb(255 255 255 / 8%);
+}
+
+.vault-folders ul::-webkit-scrollbar-thumb:hover {
+    background: rgb(104, 104, 175);
+}
+
+button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sidebar-search {
+    display: flex;
+    background: rgba(73, 73, 117);
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.sidebar-search__input {
+    background: rgba(73, 73, 117, 0.9);
+    color: #fff;
+    width: 100%;
+    margin-left: 8px;
+}
+
+.sidebar-search__input::placeholder {
+    color: #aea3e9;
+}
+
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0 0 16px;
+    gap: 8px;
+    width: 260px;
+    border-radius: 16px;
+    padding: 0 16px 16px 16px;
+    border: 1px solid rgb(255 255 255 / 8%);
+    background: rgb(49, 49, 83, 90%);
+    backdrop-filter: blur(20px);
+    transition: width 0.4s;
+
+    min-height: 70vh;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+.sidebar-header img {
+    height: 24px;
+}
+
+.sidebar-header__title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.vault-tf__title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.sidebar button {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0 16px;
+    color: rgb(255 255 255 / 95%);
+}
+
+.sidebar button p:nth-child(2) {
+    flex: 1 1 auto;
+}
+
+.sidebar button:is(.active, :hover) {
+    background: rgb(0 0 0 / 30%);
+}
+
+.sidebar button i {
+    transition: 0.3s;
+}
+
+.sidebar button.active>i:nth-child(3) {
+    rotate: -180deg;
+}
+
+.sidebar button:not(.active):hover {
+    background: rgb(0 0 0 / 10%);
+}
+
+.sidebar ul {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sub-menu {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    transition: 0.5s;
+}
+
+.sub-menu ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+}
+
+.sub-menu button {
+    padding-left: 52px;
+}
+
+.sub-menu button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    translate: 0 -50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 35%);
+}
+
+.sidebar .material-symbols-outlined {
+    font-size: 16px;
+}
+
+.sidebar i {
+    font-size: 20px;
+    width: 20px;
+    max-width: 20px;
+    min-width: 20px;
+}
+
+.vault-folders ul {
+    display: block;
+    height: 20vh;
+    overflow: auto;
+}
+
+.vault-folders_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1080px) {
+    .container {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .sidebar {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

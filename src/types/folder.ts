@@ -8,7 +8,7 @@ export interface FolderBaseData extends BaseType {
 
 export interface FolderData extends FolderBaseData {
     id: number;
-    createdAt: string;
+    createdAt: Date;
 }
 
 export interface FolderCreateData extends FolderBaseData { }

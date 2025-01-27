@@ -1,0 +1,109 @@
+.auth-container {
+    display: flex;
+
+    align-items: center;
+    height: 100vh;
+}
+
+.auth-block {
+    margin: 0 auto;
+    max-width: 300px;
+    width: 90%;
+
+    background-color: var(--background-block);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 16px;
+}
+
+.auth-block__title {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.auth-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-main h5 {
+    font-size: 18px;
+}
+
+.auth-btn,
+.another-auth__btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 10px;
+    background-color: #aea3e9;
+    color: rgb(255 255 255 / 95%);
+}
+
+.auth-btn:hover {
+    background-color: #9587e2;
+}
+
+.auth-main__input {
+    /* color: #fff; */
+    width: 100%;
+}
+
+.auth-main__input::placeholder {
+    color: #aea3e9;
+}
+
+.another-auth {
+    color: #aea3e9;
+}
+
+.another-auth:hover {
+    color: #9587e2;
+}
+
+.MuiFormControl-root {
+    width: 100%;
+    margin: 0;
+}
+
+.MuiTextField-root::before {
+    color: #aea3e9;
+    border-bottom: 1px solid var(--border);
+}
+
+.MuiInputBase-input::after {
+    color: #bfb5f7;
+}
+
+.MuiInputBase-input {
+    color: #fff;
+}
+
+.MuiFormLabel-root {
+    color: #d3d5da;
+}
+
+.Mui-focused::after {
+    border-bottom: 1px solid #aea3e9;
+}
+
+.MuiFormLabel-root:hover {
+    border-bottom: 2px solid #aea3e9;
+}
+
+.css-1eed5fa-MuiInputBase-root-MuiInput-root::before {
+    border-bottom: 1px solid var(--border);
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #aea3e9;
+}

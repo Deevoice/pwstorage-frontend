@@ -6,8 +6,7 @@ export interface UserBaseData extends BaseType {
 }
 
 export interface UserData extends UserBaseData {
-    id: number;
-    createdAt: string;
+    createdAt: Date;
 }
 
 export interface UserCreateData extends UserBaseData {

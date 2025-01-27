@@ -33,7 +33,7 @@
         "declaration": true, // Generates declaration files (.d.ts)
         "removeComments": true, // Removes comments from output files
         "noImplicitAny": true, // Prohibits the implicit type any
-        "noUnusedLocals": true, // Error if there are unused local variables
+        "noUnusedLocals": false, // Error if there are unused local variables
         "noUnusedParameters": true, // Error if there are unused parameters
         "noImplicitReturns": true, // Error if there are implicit return values
         "noFallthroughCasesInSwitch": true, // Error if there is a fallthrough in the switch
